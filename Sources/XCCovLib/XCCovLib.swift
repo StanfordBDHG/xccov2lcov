@@ -5,23 +5,21 @@
 
 import Foundation
 
-public
-protocol XCCovBase {
+
+public protocol XCCovBase {
     var coveredLines: Int { get }
     var executableLines: Int { get }
     var lineCoverage: Double { get }
 }
 
-public
-struct XCCovData: XCCovBase, Decodable {
+public struct XCCovData: XCCovBase, Decodable {
     public let coveredLines: Int
     public let executableLines: Int
     public let lineCoverage: Double
     public let targets: [XCCovTarget]
 }
 
-public
-struct XCCovTarget: XCCovBase, Decodable {
+public struct XCCovTarget: XCCovBase, Decodable {
     public let coveredLines: Int
     public let executableLines: Int
     public let lineCoverage: Double
@@ -30,8 +28,7 @@ struct XCCovTarget: XCCovBase, Decodable {
     public let files: [XCCovFile]
 }
 
-public
-struct XCCovFile: XCCovBase, Decodable {
+public struct XCCovFile: XCCovBase, Decodable {
     public let coveredLines: Int
     public let executableLines: Int
     public let lineCoverage: Double
@@ -40,8 +37,7 @@ struct XCCovFile: XCCovBase, Decodable {
     public let functions: [XCCovFunction]
 }
 
-public
-struct XCCovFunction: XCCovBase, Decodable {
+public struct XCCovFunction: XCCovBase, Decodable {
     public let coveredLines: Int
     public let executableLines: Int
     public let lineCoverage: Double

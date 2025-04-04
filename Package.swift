@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -9,17 +9,23 @@ let package = Package(
         .executable(name: "xccov2lcov", targets: ["xccov2lcov"])
     ],
     dependencies: [
-        .package(url: "https://github.com/kylef/Commander", from: "0.9.1")
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0")
     ],
     targets: [
         .target(
             name: "XCCovLib",
-            dependencies: []),
-        .target(
+            dependencies: []
+        ),
+        .executableTarget(
             name: "xccov2lcov",
-            dependencies: ["XCCovLib", "Commander"]),
+            dependencies: [
+                .target(name: "XCCovLib"),
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
+            ]
+        ),
         .testTarget(
             name: "xccov2lcovTests",
-            dependencies: ["xccov2lcov"]),
+            dependencies: ["xccov2lcov"]
+        ),
     ]
 )

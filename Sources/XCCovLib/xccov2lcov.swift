@@ -5,14 +5,14 @@
 
 import Foundation
 
-public
-enum Mode: String {
+
+public enum Mode: String {
     case simple = "simple"
     case full = "full"
 }
 
-public
-struct XCCovContext {
+
+public struct XCCovContext {
     public let includedTargets: [String]
     public let trimPath: String
     public let mode: Mode
@@ -23,6 +23,7 @@ struct XCCovContext {
         self.mode = mode
     }
 }
+
 
 extension XCCovData {
     public func lcov(context: XCCovContext) -> String {
@@ -38,11 +39,13 @@ extension XCCovData {
     }
 }
 
+
 extension XCCovTarget {
     public func lcov(context: XCCovContext) -> String {
         files.map { $0.lcov(context: context) }.joined(separator: "\n")
     }
 }
+
 
 extension XCCovFile {
     public func lcov(context: XCCovContext) -> String {
@@ -58,6 +61,7 @@ extension XCCovFile {
             .joined(separator: "\n")
     }
 }
+
 
 extension XCCovFunction {
     public func lcov(context: XCCovContext) -> String {
