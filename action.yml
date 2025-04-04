@@ -21,4 +21,4 @@ runs:
       run: swift build -c release xccov2lcov
     - name: xccov
       shell: bash
-      run: xcrun xccov view --report --json ${{ input.xcresult }} | .build/release/xccov2lcov > info.lcov
+      run: xcrun xccov view --report --json ${{ inputs.xcresult }} | .build/release/xccov2lcov > info.lcov
