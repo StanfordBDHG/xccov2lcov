@@ -1,7 +1,11 @@
 //
-// Created by David Whetstone on 10/16/19.
-// Copyright (c) 2019 Trax. All rights reserved.
+// This source file is part of the Stanford Biodesign for Digital Health open-source project
 //
+// SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+// Originally created by David Whetstone, Trax, 10/16/19.
 
 import Foundation
 

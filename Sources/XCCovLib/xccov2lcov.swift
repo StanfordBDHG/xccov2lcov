@@ -1,7 +1,11 @@
 //
-// Created by David Whetstone on 10/16/19.
-// Copyright (c) 2019 Trax. All rights reserved.
+// This source file is part of the Stanford Biodesign for Digital Health open-source project
 //
+// SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+// Originally created by David Whetstone, Trax, 10/16/19.
 
 import Foundation
 
@@ -49,14 +53,14 @@ extension XCCovTarget {
 
 extension XCCovFile {
     public func lcov(context: XCCovContext) -> String {
-
-        [
+        let lines = [
             "SF:\(path.trimmingPrefix(context.trimPath))",
             "\(functions.map { $0.lcov(context: context)}.joined(separator: "\n"))",
             context.mode == .full ? "LF:\(executableLines)" : nil,
             context.mode == .full ? "LH:\(coveredLines)" : nil,
             "end_of_record"
         ]
+        return lines
             .compactMap { $0 }
             .joined(separator: "\n")
     }

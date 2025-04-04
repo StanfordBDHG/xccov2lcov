@@ -1,0 +1,24 @@
+#
+# This source file is part of the Stanford Spezi open source project
+#
+# SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+#
+# SPDX-License-Identifier: MIT
+#
+
+name: Tests Action
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  pull-request:
+    name: Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: StanfordBDHG/.github/.github/workflows/swiftlint.yml@v2
+      - uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
