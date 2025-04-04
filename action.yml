@@ -9,10 +9,6 @@ inputs:
     description: 'xcresult bundle'
     required: true
     type: string
-#  targets:
-#    description: 'which targets should be included'
-#    required: false
-#    type: 
 runs:
   using: "composite"
   steps:
