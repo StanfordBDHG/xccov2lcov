@@ -19,6 +19,7 @@ runs:
     - name: Build xccov
       shell: bash
       run: swift build -c release --product xccov2lcov
+      working-directory: ${{ github.action_path }}
     - name: xccov
       shell: bash
-      run: xcrun xccov view --report --json ${{ inputs.xcresult }} | .build/release/xccov2lcov > info.lcov
+      run: xcrun xccov view --report --json ${{ inputs.xcresult }} | ${{ github.action_path }}/.build/release/xccov2lcov > info.lcov
