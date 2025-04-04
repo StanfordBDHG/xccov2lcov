@@ -1,0 +1,25 @@
+name: 'xccov2lcov'
+description: 'Convert xccov and xcresult data to lcov'
+author: 'Lukas Kollmer <contact@lukaskollmer.de>'
+branding:
+  icon: 'terminal'
+  color: 'blue'
+inputs:
+  xcresult:
+    description: 'xcresult bundle'
+    required: true
+    type: string
+#  targets:
+#    description: 'which targets should be included'
+#    required: false
+#    type: 
+runs:
+  using: "composite"
+  steps:
+    - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+    - name: Build xccov
+      run: swift build -c release xccov2lcov
+    - name: xccov
+      run: xcrun xccov view --report --json ${{ input.xcresult }} | .build/release/xccov2lcov > info.lcov
