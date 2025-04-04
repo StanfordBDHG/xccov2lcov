@@ -16,7 +16,7 @@ extension Mode: ExpressibleByArgument {}
 
 @main
 struct xccov2lcov: ParsableCommand {
-    @Argument(help: "Input filename (output of `xccov view --report --json file.xcresult`)")
+    @Argument(help: "Input filename (output of `xccov view --report --json file.xcresult`). Omit to read input from STDIN.")
     var inputFilename: String?
     
     @Option(help: "Path to trim from start of paths in input file")
