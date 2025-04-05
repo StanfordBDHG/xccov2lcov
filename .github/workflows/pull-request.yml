@@ -3,7 +3,7 @@
 #
 # SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
-# SPDX-License-Identifier: TEST
+# SPDX-License-Identifier: MIT
 #
 
 name: Tests Action
