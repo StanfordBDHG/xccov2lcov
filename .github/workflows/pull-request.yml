@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: MIT
 #
 
-name: Tests Action
+name: Pull Request
 
 on:
   push:
