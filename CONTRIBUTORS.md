@@ -11,11 +11,9 @@ SPDX-License-Identifier: MIT
 # xccov2lcov contributors
 
 ## Original Contributors
+* [David Whetstone](https://github.com/humblehacker)
+* [Corey Werner](https://github.com/cnotethegr8)
 
-- [David Whetstone](https://github.com/humblehacker)
-- [Corey Werner](https://github.com/cnotethegr8)
-
-## Stanford Contributors 
-
-- [Lukas Kollmer](https://github.com/lukaskollmer)
-- [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
+## Stanford Contributors
+* [Lukas Kollmer](https://github.com/lukaskollmer)
+* [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
