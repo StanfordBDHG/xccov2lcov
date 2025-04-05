@@ -1,6 +1,17 @@
 // swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
+//
+// This source file is part of the Stanford Biodesign for Digital Health open-source project
+//
+// SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+
+
 import PackageDescription
 
 let package = Package(
@@ -24,8 +35,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "xccov2lcovTests",
-            dependencies: ["xccov2lcov"]
-        ),
+            name: "XCCovLibTests",
+            dependencies: ["XCCovLib"]
+        )
     ]
 )

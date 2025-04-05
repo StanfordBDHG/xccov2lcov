@@ -1,8 +1,21 @@
+//
+// This source file is part of the Stanford Biodesign for Digital Health open-source project
+//
+// SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
+//
+// SPDX-License-Identifier: MIT
+//
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+//
+
+// swiftlint:disable identifier_name line_length
+
 import Testing
 @testable import XCCovLib
 
-@Suite("xccov2lcovTests")
-struct xccov2lcovTests {
+
+@Suite("XCCovLibTests")
+struct XCCovLibTests {
     @Test
     func testFunctionSimple() {
         let function = XCCovFunction(coveredLines: 1, executableLines: 2, lineCoverage: 3.0, executionCount: 4, lineNumber: 5, name: "fn")
