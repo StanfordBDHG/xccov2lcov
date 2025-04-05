@@ -5,18 +5,21 @@
 //
 // SPDX-License-Identifier: MIT
 //
-// Originally created by David Whetstone, Trax, 10/16/19.
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+//
 
 import ArgumentParser
 import Foundation
 import XCCovLib
 
 
-extension Mode: ExpressibleByArgument {}
+struct CmdError: Error, CustomStringConvertible {
+    let description: String
+}
 
 
 @main
-struct xccov2lcov: ParsableCommand {
+struct xccov2lcov: ParsableCommand { // swiftlint:disable:this type_name
     @Argument(help: "Input filename (output of `xccov view --report --json file.xcresult`). Omit to read input from STDIN.")
     var inputFilename: String?
     
@@ -53,6 +56,4 @@ struct xccov2lcov: ParsableCommand {
 }
 
 
-struct CmdError: Error, CustomStringConvertible {
-    let description: String
-}
+extension Mode: ExpressibleByArgument {}

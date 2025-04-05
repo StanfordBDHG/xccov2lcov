@@ -5,48 +5,86 @@
 //
 // SPDX-License-Identifier: MIT
 //
-// Originally created by David Whetstone, Trax, 10/16/19.
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+//
+
+// swiftlint:disable missing_docs
 
 import Foundation
 
 
-public protocol XCCovBase {
-    var coveredLines: Int { get }
-    var executableLines: Int { get }
-    var lineCoverage: Double { get }
+public enum Mode: String {
+    case simple
+    case full
 }
 
-public struct XCCovData: XCCovBase, Decodable {
-    public let coveredLines: Int
-    public let executableLines: Int
-    public let lineCoverage: Double
-    public let targets: [XCCovTarget]
+
+public struct XCCovContext {
+    public let includedTargets: [String]
+    public let trimPath: String
+    public let mode: Mode
+    
+    public init(includedTargets: [String] = [], trimPath: String = "", mode: Mode = .simple) {
+        self.includedTargets = includedTargets
+        self.trimPath = trimPath
+        self.mode = mode
+    }
 }
 
-public struct XCCovTarget: XCCovBase, Decodable {
-    public let coveredLines: Int
-    public let executableLines: Int
-    public let lineCoverage: Double
-    public let name: String
-    public let buildProductPath: String
-    public let files: [XCCovFile]
+
+extension XCCovData {
+    public func lcov(context: XCCovContext) -> String {
+        includedTargets(context.includedTargets)
+            .map { $0.lcov(context: context) }
+            .joined(separator: "\n")
+    }
+    
+    private func includedTargets(_ includeTargets: [String]) -> [XCCovTarget] {
+        includeTargets.isEmpty
+            ? targets
+            : targets.filter { includeTargets.contains($0.name) }
+    }
 }
 
-public struct XCCovFile: XCCovBase, Decodable {
-    public let coveredLines: Int
-    public let executableLines: Int
-    public let lineCoverage: Double
-    public let name: String
-    public let path: String
-    public let functions: [XCCovFunction]
+
+extension XCCovTarget {
+    public func lcov(context: XCCovContext) -> String {
+        files.map { $0.lcov(context: context) }.joined(separator: "\n")
+    }
 }
 
-public struct XCCovFunction: XCCovBase, Decodable {
-    public let coveredLines: Int
-    public let executableLines: Int
-    public let lineCoverage: Double
-    public let executionCount: Int
-    public let lineNumber: Int
-    public let name: String
+
+extension XCCovFile {
+    public func lcov(context: XCCovContext) -> String {
+        let lines = [
+            "SF:\(path.trimmingPrefix(context.trimPath))",
+            "\(functions.map { $0.lcov(context: context) }.joined(separator: "\n"))",
+            context.mode == .full ? "LF:\(executableLines)" : nil,
+            context.mode == .full ? "LH:\(coveredLines)" : nil,
+            "end_of_record"
+        ]
+        return lines
+            .compactMap { $0 }
+            .joined(separator: "\n")
+    }
 }
 
+
+extension XCCovFunction {
+    private var namedFunction: String {
+        """
+        FN:\(lineNumber),\(name)
+        FNDA:\(executionCount),\(name)
+        FNF:\(executableLines)
+        FNH:\(coveredLines)
+        """
+    }
+    
+    private var unnamedFunction: String {
+        "DA:\(lineNumber),\(executionCount)"
+    }
+    
+    public func lcov(context: XCCovContext) -> String {
+        name.isEmpty || context.mode == .simple ? unnamedFunction : namedFunction
+    }
+}

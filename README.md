@@ -12,7 +12,7 @@ SPDX-License-Identifier: MIT
 
 A utility to convert data from Xcode 11's code coverage facility into the `lcov` file format.
 
-Based on [trax-retail/xccov2lcov](https://github.com/trax-retail/xccov2lcov).
+Based on [trax-retail/xccov2lcov](https://github.com/trax-retail/xccov2lcov) written by David Whetstone @ [Trax Retail](https://traxretail.com/).
 
 
 ## Usage: CLI

@@ -8,6 +8,8 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+//
 
 import PackageDescription
 
@@ -32,8 +34,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "xccov2lcovTests",
-            dependencies: ["xccov2lcov"]
-        ),
+            name: "XCCovLibTests",
+            dependencies: ["XCCovLib"]
+        )
     ]
 )

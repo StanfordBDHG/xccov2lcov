@@ -5,13 +5,17 @@
 //
 // SPDX-License-Identifier: MIT
 //
-// Originally created by David Whetstone, Trax, 10/16/19.
+// Originally created by David Whetstone @ Trax Retail, 10/16/19.
+//
+
+// swiftlint:disable identifier_name line_length
 
 import Testing
 @testable import XCCovLib
 
-@Suite("xccov2lcovTests")
-struct xccov2lcovTests {
+
+@Suite("XCCovLibTests")
+struct XCCovLibTests {
     @Test
     func testFunctionSimple() {
         let function = XCCovFunction(coveredLines: 1, executableLines: 2, lineCoverage: 3.0, executionCount: 4, lineNumber: 5, name: "fn")
