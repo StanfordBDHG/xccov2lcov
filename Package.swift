@@ -8,8 +8,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+
 // Originally created by David Whetstone @ Trax Retail, 10/16/19.
-//
+
 
 import PackageDescription
 
