@@ -19,3 +19,25 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/action-release-tag.yml@v2
     permissions:
       contents: write
+  build-and-upload:
+    name: Build and Upload Binaries
+    # This tool deals with xcresult, so it must run on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6"
+      - name: Build binary
+        run: swift build -c release --product xccov2lcov
+      - name: Create archive
+        run: |
+          cd .build/release
+          tar -czf xccov2lcov-macos.tar.gz xccov2lcov
+      - name: Upload release asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.ref_name }} .build/release/xccov2lcov-macos.tar.gz
