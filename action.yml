@@ -24,7 +24,7 @@ runs:
       run: |
         set -e
         # Download the latest precompiled binary
-        wget https://github.com/StanfordBDHG/xccov2lcov/releases/latest/download/xccov2lcov.tar.gz
+        wget https://github.com/StanfordBDHG/xccov2lcov/releases/latest/download/xccov2lcov-macos.tar.gz
         # Extract and make executable
         tar -xzf xccov2lcov.tar.gz
         chmod +x xccov2lcov
