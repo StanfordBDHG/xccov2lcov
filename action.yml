@@ -29,10 +29,9 @@ runs:
         tar -xzf xccov2lcov-macos.tar.gz
         chmod +x xccov2lcov
         # Add the binary's location to the PATH for subsequent steps
-        echo $GITHUB_PATH
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
-        echo $GITHUB_PATH
+        echo XCCOV2lCOV_BINARY="$(pwd -L)/xccov2lcov" >> $GITHUB_ENV
+        echo "Downloaded xccov2lcov to $XCCOV2lCOV_BINARY"
     - name: Run xccov2lcov
       shell: bash
       run: |
-        xcrun xccov view --report --json ${{ inputs.xcresult }} | xccov2lcov > info.lcov
+        xcrun xccov view --report --json ${{ inputs.xcresult }} | $XCCOV2lCOV_BINARY > info.lcov
