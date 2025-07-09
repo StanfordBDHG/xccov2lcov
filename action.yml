@@ -25,15 +25,17 @@ runs:
   steps:
     - name: Download xccov2lcov
       shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        REPO: ${{ github.action_repository }}
       run: |
         set -e
-        VERSION="${{ inputs.version }}"
         # Check if version is empty or a branch ref, and handle it
         if [[ -z "$VERSION" ]] || [[ "$VERSION" == refs/heads/* ]]; then
           echo "Error: Could not determine a release version. Please specify a version tag (e.g., @v1.2.3) or provide a 'version' input."
           exit 1
         fi
-        URL="https://github.com/${{ github.action_repository }}/releases/download/${VERSION}/xccov2lcov-macos.tar.gz"
+        URL="https://github.com/${REPO}/releases/download/${VERSION}/xccov2lcov-macos.tar.gz"
         echo "Downloading xccov2lcov from ${URL}..."
         curl -sL "${URL}" -o xccov2lcov.tar.gz
         # Extract and make executable
