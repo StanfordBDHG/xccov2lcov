@@ -24,9 +24,11 @@ runs:
       run: |
         set -e
         # Download the latest precompiled binary
-        wget https://github.com/StanfordBDHG/xccov2lcov/releases/latest/download/xccov2lcov-macos.tar.gz
+        echo "Downloading latest xccov2lcov release"
+        URL="https://github.com/StanfordBDHG/xccov2lcov/releases/latest/download/xccov2lcov-macos.tar.gz"
+        curl -f -sL "${URL}" -o xccov2lcov.tar.gz
         # Extract and make executable
-        tar -xzf xccov2lcov-macos.tar.gz
+        tar -xzf xccov2lcov.tar.gz
         chmod +x xccov2lcov
         # Add the binary's location to the PATH for subsequent steps
         echo XCCOV2lCOV_BINARY="$(pwd -L)/xccov2lcov" >> $GITHUB_ENV
