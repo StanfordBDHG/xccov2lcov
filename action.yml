@@ -22,14 +22,12 @@ inputs:
     default: ${{ github.action_ref }}
 runs:
   using: "composite"
-  env:
-    ACTION_VERSION: ${{ inputs.version }}
   steps:
     - name: Download xccov2lcov
       shell: bash
       run: |
         set -e
-        VERSION="$XCCOV_VERSION"
+        VERSION="${{ inputs.version }}"
         # Check if version is empty or a branch ref, and handle it
         if [[ -z "$VERSION" ]] || [[ "$VERSION" == refs/heads/* ]]; then
           echo "Error: Could not determine a release version. Please specify a version tag (e.g., @v1.2.3) or provide a 'version' input."
