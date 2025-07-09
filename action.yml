@@ -30,7 +30,7 @@ runs:
         chmod +x xccov2lcov
         # Add the binary's location to the PATH for subsequent steps
         echo XCCOV2lCOV_BINARY="$(pwd -L)/xccov2lcov" >> $GITHUB_ENV
-        echo "Downloaded xccov2lcov to $XCCOV2lCOV_BINARY"
+        echo "Downloaded xccov2lcov to $(pwd -L)/xccov2lcov"
     - name: Run xccov2lcov
       shell: bash
       run: |
